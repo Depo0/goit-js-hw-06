@@ -1,41 +1,34 @@
-const getUserNames = users => users.map(user => user.name);
+console.group("task-2");
 
-console.log(
-  getUserNames([
-    {
-      name: "Moore Hensley",
-      email: "moorehensley@indexia.com",
-      balance: 2811
-    },
-    {
-      name: "Sharlene Bush",
-      email: "sharlenebush@tubesys.com",
-      balance: 3821
-    },
-    {
-      name: "Ross Vazquez",
-      email: "rossvazquez@xinware.com",
-      balance: 3793
-    },
-    {
-      name: "Elma Head",
-      email: "elmahead@omatom.com",
-      balance: 2278
-    },
-    {
-      name: "Carey Barr",
-      email: "careybarr@nurali.com",
-      balance: 3951
-    },
-    {
-      name: "Blackburn Dotson",
-      email: "blackburndotson@furnigeer.com",
-      balance: 1498
-    },
-    {
-      name: "Sheree Anthony",
-      email: "shereeanthony@kog.com",
-      balance: 2764
-    },
-  ])
-); // ["Moore Hensley", "Sharlene Bush", "Ross Vazquez", "Elma Head", "Carey Barr", "Blackburn Dotson", "Sheree Anthony"]
+class Storage {
+    #items;
+    constructor(items) {
+        this.#items = items; 
+    }
+    getItems() {
+        return this.#items;
+    }
+    addItem(newItem) {
+        return this.#items.push(newItem)
+    }
+    removeItem(itemToRemove) {
+        const index = this.#items.indexOf(itemToRemove);
+      if (index !== -1) {
+         return this.#items.splice(index, 1)
+      }
+        } 
+}
+
+
+const storage = new Storage(["Nanitoids", "Prolonger", "Antigravitator"]);
+console.log(storage.getItems()); // ["Nanitoids", "Prolonger", "Antigravitator"]
+
+storage.addItem("Droid");
+console.log(storage.getItems()); // ["Nanitoids", "Prolonger", "Antigravitator", "Droid"]
+
+storage.removeItem("Prolonger");
+console.log(storage.getItems()); // ["Nanitoids", "Antigravitator", "Droid"]
+
+storage.removeItem("Scaner");
+console.log(storage.getItems()); // ["Nanitoids", "Antigravitator", "Droid"]
+console.groupEnd(); 
